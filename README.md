@@ -1,2 +1,1 @@
-# shane
-my neighbors repo
+http://shane.ahightower.com
