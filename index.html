@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shane | Certified Forklift Operator | Shane.ahightower.com</title>
+<meta name="description" content="Shane is a certified forklift operator and warehouse professional in Fresno, CA. Two years at Neighborhood Thrift on Olive Avenue. Strong, reliable, and ready to work.">
+<link rel="canonical" href="https://shane.ahightower.com/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shane.ahightower.com/">
+<meta property="og:title" content="Shane | Certified Forklift Operator">
+<meta property="og:description" content="Certified forklift operator with two years of warehouse experience in Fresno. Strong, professional, and ready for the next role.">
+<meta property="og:image" content="https://shane.ahightower.com/images/shane.jpg">
+<meta property="og:image:secure_url" content="https://shane.ahightower.com/images/shane.jpg">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="844">
+<meta property="og:image:alt" content="Shane with his son and a neighbor in Fresno">
+<meta property="og:site_name" content="Shane.ahightower.com">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shane | Certified Forklift Operator">
+<meta name="twitter:description" content="Certified forklift operator with two years of warehouse experience in Fresno. Strong, professional, and ready for the next role.">
+<meta name="twitter:image" content="https://shane.ahightower.com/images/shane.jpg">
+
+<style>
+  :root {
+    --bg: #0f1419;
+    --card: #1a2332;
+    --accent: #f5a623;
+    --safety: #ffcc00;
+    --text: #e8eef5;
+    --muted: #8b9bb4;
+    --forklift: #2d6a9f;
+    --floor: #3a3f4b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    background: linear-gradient(160deg, #0f1419 0%, #1a2332 50%, #0d1117 100%);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 16px 60px;
+  }
+  header {
+    text-align: center;
+    padding: 24px 0 12px;
+    position: relative;
+  }
+  .domain {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(245,166,35,0.15);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .tagline {
+    color: var(--muted);
+    font-size: 1.1rem;
+    max-width: 560px;
+    margin: 0 auto 20px;
+  }
+  .profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 18px 0 10px;
+  }
+  .profile img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid var(--accent);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .profile-info {
+    text-align: left;
+  }
+  .profile-info h2 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+  }
+  .profile-info p {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .game-section {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 24px 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .game-header h3 {
+    font-size: 1.15rem;
+    color: var(--safety);
+  }
+  .controls-hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  #forkliftCanvas {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    background: #2a2f3a;
+    border-radius: 10px;
+    border: 2px solid #3d4658;
+    cursor: crosshair;
+    touch-action: none;
+  }
+  .status-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  .status-item {
+    background: rgba(0,0,0,0.25);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .status-item span { color: var(--accent); font-weight: 600; }
+  .resume-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin: 24px 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+  .section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .summary {
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+    color: #c5d0e0;
+  }
+  .job {
+    margin-bottom: 20px;
+  }
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .job-title {
+    font-weight: 700;
+    font-size: 1.15rem;
+  }
+  .job-company {
+    color: var(--muted);
+  }
+  .job-dates {
+    color: var(--safety);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  ul {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+  li {
+    margin-bottom: 6px;
+    color: #c5d0e0;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .skill-pill {
+    background: rgba(245,166,35,0.12);
+    border: 1px solid rgba(245,166,35,0.35);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  .skill-pill.loaded {
+    background: rgba(76, 175, 80, 0.2);
+    border-color: #4caf50;
+    color: #a5d6a7;
+    transform: scale(1.03);
+  }
+  .footer-note {
+    margin-top: 36px;
+    padding: 20px;
+    background: rgba(245,166,35,0.08);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    font-size: 0.95rem;
+    color: #c5d0e0;
+  }
+  .footer-note strong { color: var(--accent); }
+  .touch-controls {
+    display: none;
+    margin-top: 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .touch-btn {
+    background: #3d4658;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+  }
+  .touch-btn:active { background: var(--accent); color: #000; }
+  @media (max-width: 700px) {
+    .touch-controls { display: flex; }
+    .controls-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="domain">shane.ahightower.com</div>
+      <div class="badge">WAREHOUSE READY • CERTIFIED OPERATOR</div>
+      <h1>Shane</h1>
+      <p class="tagline">Forklift Operator • Material Handler • The guy you want moving the heavy stuff so the rest of the team can keep rolling</p>
+      
+      <div class="profile">
+        <img src="images/shane.jpg" alt="Shane with his son and a neighbor in Fresno" width="140" height="140">
+        <div class="profile-info">
+          <h2>Shane</h2>
+          <p>Fresno, CA • Olive Avenue / Tower District area</p>
+          <p style="margin-top:6px; color:var(--accent); font-weight:600;">Open to warehouse, logistics &amp; forklift roles</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="game-section">
+      <div class="game-header">
+        <h3>Interactive Demo — Drive the Forklift</h3>
+        <div class="controls-hint">← → Move &nbsp;|&nbsp; ↑ ↓ Raise / Lower Forks &nbsp;|&nbsp; SPACE Pick up / Drop</div>
+      </div>
+      <canvas id="forkliftCanvas" width="960" height="420"></canvas>
+      <div class="status-bar">
+        <div class="status-item">Boxes loaded: <span id="loadedCount">0</span> / 5</div>
+        <div class="status-item">Fork height: <span id="forkHeightDisp">20</span>px</div>
+        <div class="status-item" id="actionMsg">Drive over a black box and press SPACE to pick it up</div>
+      </div>
+      <div class="touch-controls" id="touchControls">
+        <button class="touch-btn" data-key="ArrowLeft">←</button>
+        <button class="touch-btn" data-key="ArrowRight">→</button>
+        <button class="touch-btn" data-key="ArrowUp">↑ Lift</button>
+        <button class="touch-btn" data-key="ArrowDown">↓ Lower</button>
+        <button class="touch-btn" data-key=" ">SPACE</button>
+      </div>
+    </section>
+
+    <section class="resume-card">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary">
+        Certified forklift operator with two solid years of experience in a high-volume neighborhood thrift warehouse. 
+        Strong, healthy, easy to get along with, and highly professional. Comfortable moving heavy inventory all day 
+        and serving as a steady, positive role model for the people around him. Looking for any warehouse or material-handling 
+        role where reliability, strength, and a can-do attitude matter.
+      </p>
+
+      <div class="section-title">Experience</div>
+      <div class="job">
+        <div class="job-header">
+          <div>
+            <div class="job-title">Forklift Operator / Warehouse Associate</div>
+            <div class="job-company">Neighborhood Thrift Store — Olive Avenue, Fresno, CA</div>
+          </div>
+          <div class="job-dates">July 2024 – July 2026</div>
+        </div>
+        <ul>
+          <li>Operated forklift daily to move, stage, load, and unload merchandise and inventory across the warehouse floor</li>
+          <li>Maintained safe, organized work areas in a fast-paced thrift retail environment</li>
+          <li>Relied upon for strength and efficiency when heavy or awkward items needed relocating</li>
+          <li>Worked professionally with co-workers and management; known as a positive example for peers</li>
+          <li>Held valid forklift certification throughout employment</li>
+        </ul>
+      </div>
+
+      <div class="section-title">Core Strengths</div>
+      <div class="skills-grid" id="skillsGrid">
+        <div class="skill-pill" data-skill="0">Certified Forklift Operator</div>
+        <div class="skill-pill" data-skill="1">Heavy Material Handling</div>
+        <div class="skill-pill" data-skill="2">Warehouse Safety &amp; Organization</div>
+        <div class="skill-pill" data-skill="3">Reliable Team Player</div>
+        <div class="skill-pill" data-skill="4">Professional &amp; Positive Role Model</div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <div class="section-title">Additional Notes</div>
+        <ul>
+          <li>Physically strong and healthy — big frame that can move what needs moving without drama</li>
+          <li>Easy to get along with and professional on the floor</li>
+          <li>Loves to excel and take pride in a clean, efficient warehouse</li>
+          <li>Immediately available for full-time warehouse, distribution, or logistics positions in the Fresno area</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      <strong>A note from the neighbor who built this:</strong><br>
+      Shane is the real deal. After he lost his forklift job at the thrift on Olive, I (Aaron) put this together for him 
+      because good people look out for each other. He has the certification, the experience, the strength, and the attitude. 
+      The little forklift game up top is just a playful way to show he is more than "the guy on the forklift". He is creative, 
+      steady, and worth hiring. If you are looking for a dependable warehouse hand, give Shane a shot.
+      <br><br>
+      Hosted at <strong>shane.ahightower.com</strong>
+    </div>
+  </div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('forkliftCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width;
+  const H = canvas.height;
+
+  let fl = {
+    x: 120,
+    y: 300,
+    vx: 0,
+    forkH: 25,
+    carrying: null,
+    width: 130,
+    height: 70
+  };
+
+  const boxes = [
+    { x: 280, y: 360, w: 70, h: 55, label: "CERTIFIED", skill: 0, carried: false, loaded: false },
+    { x: 380, y: 360, w: 70, h: 55, label: "2 YEARS", skill: 1, carried: false, loaded: false },
+    { x: 480, y: 360, w: 70, h: 55, label: "STRONG", skill: 2, carried: false, loaded: false },
+    { x: 580, y: 360, w: 70, h: 55, label: "TEAM", skill: 3, carried: false, loaded: false },
+    { x: 680, y: 360, w: 70, h: 55, label: "PRO", skill: 4, carried: false, loaded: false }
+  ];
+
+  const dock = { x: 820, y: 220, w: 120, h: 40 };
+
+  const keys = {};
+  let msg = "Drive over a black box • SPACE to pick up / drop";
+
+  window.addEventListener('keydown', e => {
+    keys[e.key] = true;
+    if (["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"," "].includes(e.key)) e.preventDefault();
+    if (e.key === " ") tryInteract();
+  });
+  window.addEventListener('keyup', e => { keys[e.key] = false; });
+
+  document.querySelectorAll('.touch-btn').forEach(btn => {
+    const key = btn.dataset.key;
+    btn.addEventListener('touchstart', e => { e.preventDefault(); keys[key] = true; if (key === " ") tryInteract(); });
+    btn.addEventListener('touchend', e => { e.preventDefault(); keys[key] = false; });
+    btn.addEventListener('mousedown', e => { keys[key] = true; if (key === " ") tryInteract(); });
+    btn.addEventListener('mouseup', e => { keys[key] = false; });
+  });
+
+  function tryInteract() {
+    if (fl.carrying !== null) {
+      const bx = boxes[fl.carrying];
+      const forkX = fl.x + 95;
+      if (forkX > dock.x - 20 && forkX < dock.x + dock.w + 20 && fl.forkH > 140 && fl.forkH < 190) {
+        bx.loaded = true;
+        bx.carried = false;
+        fl.carrying = null;
+        msg = "Loaded! Skill unlocked on the résumé below";
+        updateSkillsUI();
+        return;
+      }
+      bx.carried = false;
+      bx.x = forkX - 35;
+      bx.y = 360;
+      fl.carrying = null;
+      msg = "Box released. Drive it to the yellow dock on the right and lift high to load.";
+      return;
+    }
+
+    const forkX = fl.x + 95;
+    for (let i = 0; i < boxes.length; i++) {
+      const b = boxes[i];
+      if (b.loaded || b.carried) continue;
+      if (Math.abs(forkX - (b.x + b.w/2)) < 55 && fl.forkH < 45) {
+        b.carried = true;
+        fl.carrying = i;
+        msg = "Got it! Raise forks (↑) and drive to the yellow DOCK on the right, then SPACE to load.";
+        return;
+      }
+    }
+  }
+
+  function updateSkillsUI() {
+    let count = 0;
+    boxes.forEach(b => {
+      if (b.loaded) {
+        count++;
+        const pill = document.querySelector(`.skill-pill[data-skill="${b.skill}"]`);
+        if (pill) pill.classList.add('loaded');
+      }
+    });
+    document.getElementById('loadedCount').textContent = count;
+    if (count === 5) {
+      msg = "All skills loaded! Shane is ready for the warehouse.";
+    }
+  }
+
+  function update() {
+    if (keys["ArrowLeft"] || keys["a"]) fl.x -= 4.5;
+    if (keys["ArrowRight"] || keys["d"]) fl.x += 4.5;
+    if (keys["ArrowUp"] || keys["w"]) fl.forkH = Math.min(200, fl.forkH + 3.5);
+    if (keys["ArrowDown"] || keys["s"]) fl.forkH = Math.max(10, fl.forkH - 3.5);
+
+    fl.x = Math.max(20, Math.min(W - 160, fl.x));
+
+    if (fl.carrying !== null) {
+      const b = boxes[fl.carrying];
+      b.x = fl.x + 95 - b.w/2;
+      b.y = 360 - fl.forkH - 10;
+    }
+
+    document.getElementById('forkHeightDisp').textContent = Math.round(fl.forkH);
+    document.getElementById('actionMsg').textContent = msg;
+  }
+
+  function draw() {
+    ctx.fillStyle = "#2a2f3a";
+    ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = "#3a3f4b";
+    ctx.fillRect(0, 380, W, 40);
+    ctx.strokeStyle = "#4a5160";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < W; i += 60) {
+      ctx.beginPath();
+      ctx.moveTo(i, 380);
+      ctx.lineTo(i + 30, 420);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = "#252a35";
+    ctx.fillRect(0, 0, W, 120);
+    ctx.fillStyle = "#1e232c";
+    for (let i = 40; i < W; i += 90) {
+      ctx.fillRect(i, 30, 70, 70);
+    }
+
+    ctx.fillStyle = "#f5a623";
+    ctx.fillRect(dock.x, dock.y + 40, dock.w, 12);
+    ctx.fillStyle = "#3d4658";
+    ctx.fillRect(dock.x + 10, dock.y + 52, dock.w - 20, 328);
+    ctx.fillStyle = "#ffcc00";
+    ctx.font = "bold 14px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("DOCK", dock.x + dock.w/2, dock.y + 30);
+    ctx.fillText("LOAD HERE", dock.x + dock.w/2, dock.y + 55);
+
+    boxes.forEach((b) => {
+      if (b.carried) return;
+      drawBox(b);
+    });
+
+    ctx.fillStyle = "#2d6a9f";
+    ctx.fillRect(fl.x, fl.y, fl.width - 40, fl.height);
+    ctx.fillStyle = "#1e4a6e";
+    ctx.fillRect(fl.x + 10, fl.y - 35, 55, 40);
+    ctx.fillStyle = "#7ec8e3";
+    ctx.fillRect(fl.x + 18, fl.y - 28, 38, 22);
+    ctx.fillStyle = "#555";
+    ctx.fillRect(fl.x + 85, fl.y - 160, 14, 200);
+    ctx.fillStyle = "#aaa";
+    const forkY = fl.y + 20 - fl.forkH;
+    ctx.fillRect(fl.x + 85, forkY, 70, 10);
+    ctx.fillRect(fl.x + 85, forkY + 18, 70, 10);
+    ctx.fillStyle = "#222";
+    ctx.beginPath(); ctx.arc(fl.x + 30, fl.y + fl.height, 16, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(fl.x + 85, fl.y + fl.height, 16, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = "#ffcc00";
+    ctx.beginPath(); ctx.arc(fl.x + 35, fl.y - 40, 6, 0, Math.PI*2); ctx.fill();
+
+    if (fl.carrying !== null) {
+      drawBox(boxes[fl.carrying]);
+    }
+
+    ctx.fillStyle = "#8b9bb4";
+    ctx.font = "12px sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText("Pick up black skill boxes → carry to yellow DOCK → raise high → SPACE", 20, 410);
+  }
+
+  function drawBox(b) {
+    ctx.fillStyle = b.loaded ? "#2e7d32" : "#1a1a1a";
+    ctx.fillRect(b.x, b.y, b.w, b.h);
+    ctx.strokeStyle = b.loaded ? "#81c784" : "#f5a623";
+    ctx.lineWidth = 2;
+    ctx.strokeRect(b.x, b.y, b.w, b.h);
+    ctx.fillStyle = b.loaded ? "#c8e6c9" : "#ffcc00";
+    ctx.font = "bold 11px sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText(b.label, b.x + b.w/2, b.y + b.h/2 + 4);
+  }
+
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+</body>
+</html>
